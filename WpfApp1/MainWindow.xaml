@@ -26,6 +26,7 @@
         <TextBox x:Name="Bernsen_contrast" HorizontalAlignment="Left" Height="23" Margin="125,247,0,0" TextWrapping="Wrap" Text="40" VerticalAlignment="Top" Width="61"/>
         <Image Name="OriginalImage" HorizontalAlignment="Left" Margin="1000,10,0,0" VerticalAlignment="Bottom"/>
         <Image Name="MainImage" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Niblack_Copy" Content="Niblack" HorizontalAlignment="Left" Margin="45,377,0,0" VerticalAlignment="Top" Width="75" Click="Fingerprint_Click"/>
 
 
     </Grid>

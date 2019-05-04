@@ -237,5 +237,11 @@ namespace WpfApp1
             var temp = Binarization.niblack(this.bm, windowSize, kValue);
             refreshImage(temp);
         }
+
+        private void Fingerprint_Click(object sender, RoutedEventArgs e)
+        {
+            var temp = Fingerprint.KMM(bm);
+            refreshImage(temp);
+        }
     }
 }

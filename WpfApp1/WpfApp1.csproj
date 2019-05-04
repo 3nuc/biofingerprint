@@ -71,6 +71,9 @@
     <Compile Include="BitmapExtension.cs" />
     <Compile Include="Binarization.cs" />
     <Compile Include="ColorExtension.cs" />
+    <Compile Include="Fingerprint.cs" />
+    <Compile Include="FingerprintConstants.cs" />
+    <Compile Include="FingerprintHelpers.cs" />
     <Compile Include="Median.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="MainWindow.xaml.cs">
