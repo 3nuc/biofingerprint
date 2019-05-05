@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,4,0,-4">
         <Button x:Name="Konwolucyjny" Content="Konwolucyjny" HorizontalAlignment="Left" Margin="216,95,0,0" VerticalAlignment="Top" Width="75" Click="Konwolucyjny_Click"/>
         <Button Content="Oryginał" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Original_Click"/>
         <Button x:Name="Median3" Content="Median 3" HorizontalAlignment="Left" Margin="45,95,0,0" VerticalAlignment="Top" Width="75" Click="Median3_Click"/>
@@ -26,7 +26,7 @@
         <TextBox x:Name="Bernsen_contrast" HorizontalAlignment="Left" Height="23" Margin="125,247,0,0" TextWrapping="Wrap" Text="40" VerticalAlignment="Top" Width="61"/>
         <Image Name="OriginalImage" HorizontalAlignment="Left" Margin="1000,10,0,0" VerticalAlignment="Bottom"/>
         <Image Name="MainImage" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Niblack_Copy" Content="Niblack" HorizontalAlignment="Left" Margin="45,377,0,0" VerticalAlignment="Top" Width="75" Click="Fingerprint_Click"/>
+        <Button x:Name="Niblack_Copy" Content="KMM skele" HorizontalAlignment="Left" Margin="45,377,0,0" VerticalAlignment="Top" Width="75" Click="Fingerprint_Click"/>
 
 
     </Grid>

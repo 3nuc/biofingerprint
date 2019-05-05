@@ -1,7 +1,7 @@
 ﻿WpfApp1
 
 
-winexe
+exe
 C#
 .cs
 C:\Users\Lenovo\source\repos\WpfApp1\WpfApp1\obj\Debug\
@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\Lenovo\source\repos\WpfApp1\WpfApp1\App.xaml
 11151548125
 
-17711206290
+16745939742
 14-789118889
 MainWindow.xaml;
 
-False
+True
 
