@@ -38,13 +38,14 @@ namespace WpfApp1
         private static bool isPixelCornersTouchZero(int pixelX, int pixelY)
         {
             //Pozostałe piksele 1, które posiadają sąsiadów o oznaczeniu 0 na rogach, oznaczamy jako 3.
-            if (pixelX > 0 && pixelY > 0 && kmmArray[pixelX, pixelY] == 1)
+            if (kmmArray[pixelX, pixelY] == 1)
             {
+                var bottomright = kmmArray[pixelX + 1, pixelY + 1];
                 var topleft = kmmArray[pixelX - 1, pixelY - 1];
-                var bottomleft = kmmArray[pixelX - 1, pixelY + 1];
 
                 var topright = kmmArray[pixelX + 1, pixelY - 1];
-                var bottomright = kmmArray[pixelX + 1, pixelY + 1];
+                var bottomleft = kmmArray[pixelX - 1, pixelY + 1];
+
 
                 if (topleft == 0 || topright == 0 || bottomleft == 0 || bottomright == 0) return true;
             }
@@ -54,7 +55,7 @@ namespace WpfApp1
         private static bool isPixelEdgesTouchZero(int pixelX, int pixelY)
         {
 
-            if (pixelX > 0 && pixelY > 0 && kmmArray[pixelX, pixelY] == 1)
+            if (kmmArray[pixelX, pixelY] == 1)
             {
                 var left = kmmArray[pixelX - 1, pixelY];
                 var right = kmmArray[pixelX + 1, pixelY];
@@ -71,17 +72,15 @@ namespace WpfApp1
         private static void runEdgeAndCornerCheck()
         {
             //Piksele 1, które posiadają sąsiadów o oznaczeniu 0 po bokach, u góry lub u dołu, oznaczamy jako 2.
-            var edgeChecked = kmmArray;
 
             for (int i = 0; i < xsize; i++)
             {
                 for (int j = 0; j < ysize; j++)
                 {
-                    if (isPixelEdgesTouchZero(i, j)) edgeChecked[i, j] = 2;
-                    if (edgeChecked[i, j] == 1 && isPixelCornersTouchZero(i, j)) edgeChecked[i, j] = 3;
+                    if (isPixelEdgesTouchZero(i, j)) kmmArray[i, j] = 2;
+                    if (kmmArray[i, j] == 1 && isPixelCornersTouchZero(i, j)) kmmArray[i, j] = 3;
                 }
             }
-            kmmArray = edgeChecked;
         }
 
         private static short getWeight(int pixelX, int pixelY)
@@ -93,7 +92,7 @@ namespace WpfApp1
                 {
                     //(2 of 2)... za pomocą maski sprawdzarka obliczamy ich wagę.
                     var pixel = kmmArray[pixelX + k, pixelY + l];
-                    short currentMaskPositionWeight = FingerprintConstants.checkerMask[k+1, l+1];
+                    short currentMaskPositionWeight = FingerprintConstants.checkerMask[k + 1, l + 1];
                     if (pixel > 0)
                         weight += currentMaskPositionWeight;
                 }
@@ -103,28 +102,23 @@ namespace WpfApp1
 
         private static void addFours()
         {
-
-            short[,] checkerMask = FingerprintConstants.checkerMask;
-            short[,] result = kmmArray;
-
-            for (int i = 1; i < xsize-1; i++)
+            for (int i = 1; i < xsize - 1; i++)
             {
-                for (int j = 1; j < ysize-1; j++)
+                for (int j = 1; j < ysize - 1; j++)
                 {
                     //(1 of 2)Dla pikseli oznaczonych jako 2 ...
                     if (kmmArray[i, j] != 2) continue;
                     short weight = getWeight(i, j);
-                    Console.Write(weight+"");
+                    Console.Write(weight);
                     // Jeśli waga znajduje się na liście czwórki oznaczenie piksela zamieniamy z 2 na 4.
                     if (FingerprintConstants.fourths.Contains(weight))
                     {
-                        result[i, j] = 4;
-                        Console.Write("!");
+                        kmmArray[i, j] = 4;
+                        Console.Write("! ");
                     }
                 }
                 Console.WriteLine();
             }
-            kmmArray = result;
         }
 
         private static void printArray()
@@ -133,29 +127,28 @@ namespace WpfApp1
             {
                 for (int j = 0; j < ysize; j++)
                 {
-                    Console.Write(kmmArray[i,j]);
+                    Console.Write(kmmArray[i, j]);
                 }
                 Console.WriteLine();
             }
         }
 
-        public static void cutOut()
+        public static void cutOut(short level)
         {
             for (int i = 1; i < xsize; i++)
             {
                 for (int j = 1; j < ysize; j++)
                 {
-                    /*  
-                        Dla wszystkich pikseli oznaczonych jako 4 wyliczamy wagę za pomocą maski sprawdzarka. Jeśli waga znajduje się na liście wycięcia, zamieniamy piksel na 0, zaś w przeciwnym razie zamieniamy go na 1.
-                        Dla wszystkich pikseli oznaczonych jako 2 wyliczamy wagę za pomocą maski sprawdzarka. Jeśli waga znajduje się na liście wycięcia, zamieniamy piksel na 0, zaś w przeciwnym razie zamieniamy go na 1.
-                        Dla wszystkich pikseli oznaczonych jako 3 wyliczamy wagę za pomocą maski sprawdzarka. Jeśli waga znajduje się na liście wycięcia, zamieniamy piksel na 0, zaś w przeciwnym razie zamieniamy go na 1.
-                    */
-                    if (kmmArray[i, j] <= 1)
-                        continue;
+                    if (kmmArray[i, j] != level) continue;
                     var weight = getWeight(i, j);
-                    if (kmmArray[i, j] > 1 && FingerprintConstants.removals.Contains(weight))
+                    if (FingerprintConstants.removals.Contains(weight))
+                    {
                         kmmArray[i, j] = 0;
-                    else kmmArray[i, j] = 1;
+                    }
+                    else
+                    {
+                        kmmArray[i, j] = 1;
+                    }
                 }
             }
         }
@@ -198,7 +191,7 @@ namespace WpfApp1
             do
             {
                 counter++;
-                saveInitial = (short[,]) kmmArray.Clone();
+                saveInitial = (short[,])kmmArray.Clone();
                 //Piksele 1, które posiadają sąsiadów o oznaczeniu 0 po bokach, u góry lub u dołu, oznaczamy jako 2.
                 //Pozostałe piksele 1, które posiadają sąsiadów o oznaczeniu 0 na rogach, oznaczamy jako 3.
                 runEdgeAndCornerCheck(); //contins 0,1,2,3
@@ -219,14 +212,16 @@ namespace WpfApp1
                  Dla wszystkich pikseli oznaczonych jako 2 wyliczamy wagę za pomocą maski sprawdzarka. Jeśli waga znajduje się na liście wycięcia, zamieniamy piksel na 0, zaś w przeciwnym razie zamieniamy go na 1.
                  Dla wszystkich pikseli oznaczonych jako 3 wyliczamy wagę za pomocą maski sprawdzarka. Jeśli waga znajduje się na liście wycięcia, zamieniamy piksel na 0, zaś w przeciwnym razie zamieniamy go na 1.
                 */
-                cutOut(); //contains 0,1
+                cutOut(4); //contains 0,1
+                cutOut(2);
+                cutOut(3);
 
 #if DEBUG
                 Console.WriteLine("After cutOut() (should be only 0 and 1)");
                 printArray();
 
                 Console.WriteLine("Comparing current image to previous...");
-                if(arrayIdenticalToKmmArray(saveInitial))
+                if (arrayIdenticalToKmmArray(saveInitial))
                 {
                     Console.WriteLine("No change since last iteration - EXITING");
                 }
