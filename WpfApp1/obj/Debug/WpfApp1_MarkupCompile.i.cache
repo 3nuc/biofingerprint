@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Users\Lenovo\source\repos\WpfApp1\WpfApp1\obj\Debug\
+E:\VS Projects\biofingerprint\WpfApp1\obj\Debug\
 WpfApp1
 none
 false
 DEBUG;TRACE
-C:\Users\Lenovo\source\repos\WpfApp1\WpfApp1\App.xaml
+E:\VS Projects\biofingerprint\WpfApp1\App.xaml
 11151548125
 
-16745939742
+17-877762229
 14-789118889
 MainWindow.xaml;
 
-True
+False
 

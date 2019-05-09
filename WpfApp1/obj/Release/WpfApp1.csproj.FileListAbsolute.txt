@@ -1,0 +1,15 @@
+E:\VS Projects\biofingerprint\WpfApp1\bin\Release\WpfApp1.exe.config
+E:\VS Projects\biofingerprint\WpfApp1\bin\Release\WpfApp1.exe
+E:\VS Projects\biofingerprint\WpfApp1\bin\Release\WpfApp1.pdb
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\MainWindow.g.cs
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\App.g.cs
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1_MarkupCompile.cache
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1_MarkupCompile.lref
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\MainWindow.baml
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1.g.resources
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1.Properties.Resources.resources
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1.csproj.GenerateResource.cache
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1.csproj.CoreCompileInputs.cache
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1.exe
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1.pdb
+E:\VS Projects\biofingerprint\WpfApp1\obj\Release\WpfApp1.csprojAssemblyReference.cache

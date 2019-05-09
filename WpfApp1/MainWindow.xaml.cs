@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
+using System.Windows.Media;
+using Color = System.Drawing.Color;
+
 namespace WpfApp1
 {
     /// <summary>
@@ -37,6 +40,9 @@ namespace WpfApp1
         {
             MainImage.Source = bitmap.ToBitmapImage();
             bm = bitmap;
+
+            RenderOptions.SetBitmapScalingMode(MainImage, BitmapScalingMode.NearestNeighbor);
+            RenderOptions.SetEdgeMode(MainImage, EdgeMode.Aliased);
         }
 
         private void filtrKonwolucyjny()
@@ -242,6 +248,11 @@ namespace WpfApp1
         {
             var temp = Fingerprint.KMM(bm);
             refreshImage(temp);
+        }
+
+        private void Minutiae_Click(object sender, RoutedEventArgs e)
+        {
+            refreshImage(Fingerprint.FindMinutiae(bm));
         }
     }
 }
